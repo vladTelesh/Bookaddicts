@@ -1,0 +1,38 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" th:href="@{/images/icons/searchicon.jpg}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+</head>
+<body>
+<style>
+    input[type=text] {
+        width: 130px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+    input[type=text]:focus {
+        width: 100%;
+    }
+</style>
+<div th:replace="menu.html :: menu"></div>
+<h1>Введите фамилию автора</h1>
+
+<form>
+    <input type="text" name="search" placeholder="Поиск..">
+</form>
+
+</body>
+</html>

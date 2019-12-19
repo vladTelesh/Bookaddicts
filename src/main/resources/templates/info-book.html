@@ -1,0 +1,13 @@
+
+<html html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Info Book</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+</head>
+<body>
+<div th:replace="menu.html :: menu"></div>
+<h1>BOOOOK</h1>
+ <span th:text="'ID: '+ ${id}"></span>
+
+</body>
+</html>

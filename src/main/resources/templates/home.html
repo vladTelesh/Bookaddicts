@@ -1,0 +1,39 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" th:href="@{images/icons/home.ico}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+</head>
+<body>
+
+<div th:replace="menu.html :: menu"></div>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Average rating</th>
+        <th>My rating</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>History company NIKE</td>
+        <td>Fill Nite</td>
+        <td>10.0</td>
+        <td>10</td>
+        <td><a href="/book/1">Open</a></td>
+        <td><a href="/delete/1">Delete</a></td>
+
+    <tr>
+    <td>History</td>
+    <td>Fill</td>
+    <td>4.0</td>
+    <td>5.0</td>
+    <td><a href="/book/2">Open</a></td>
+    <td><a href="/delete/2">Delete</a></td>
+</tr>
+</table>
+</body>
+</html>

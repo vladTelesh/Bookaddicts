@@ -1,0 +1,33 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>add book</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+</head>
+<body>
+<div th:replace="menu.html :: menu"></div>
+<div class="form-wrap">
+    <div class="profile"><img th:src="@{/images/book.png}" width="160" height="200">
+        <h1>Книга</h1>
+    </div>
+    <form method="post" action="form.php">
+        <div>
+            <label>Name</label>
+            <input type="text" name="name" required pattern=^[A-Z]{1}[a-z]+$>
+        </div>
+
+        <div>
+            <label>number of pages</label>
+            <input type="number" name="surname"  pattern=^[A-Z]{1}[a-z]+$ required>
+        </div>
+        <div>
+            <label>Data publication</label>
+            <input  type="date"  name="birthday" required>
+        </div>
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+</body>
+</html>

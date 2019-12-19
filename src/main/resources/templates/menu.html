@@ -1,0 +1,23 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+<div class="top_bar" th:fragment="menu">
+
+    <div class="dropdown" >
+        <button class="dropbtn">Name's account</button>
+        <div class="dropdown-content">
+            <a th:href="@{/home}">Profile</a>
+            <a href="#">Settings</a>
+            <a href="#">Sign out</a>
+        </div>
+    </div>
+    <input type="button" value="Search" onclick="location.href='search'">
+    <input type="button" value="New Book " onclick="location.href='add-book'">
+    <hr>
+</div>
+
+</body>
+</html>
