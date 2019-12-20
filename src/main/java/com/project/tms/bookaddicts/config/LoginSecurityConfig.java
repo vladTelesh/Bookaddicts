@@ -42,7 +42,7 @@ public class LoginSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/index").usernameParameter("email")
                 .permitAll()
                 .and()
-                .logout()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/index")
                 .permitAll()
                 .and().csrf().disable();
     }

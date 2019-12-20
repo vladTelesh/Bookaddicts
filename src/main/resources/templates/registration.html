@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" type="image/png" th:href="@{/images/icons/registration.png}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{static/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/main.css}">
 </head>
 <body>
 <div class="limiter">
@@ -28,27 +28,27 @@
                 </div>
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" type="date" placeholder="Birthday" name="birthday">
+                    <input class="input100" type="date" placeholder="Birthday" th:field="*{birthday}" name="birthday">
                     <span class="focus-input100"></span>
 
                 </div>
 
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" placeholder="Email" type="email" name="email">
+                    <input class="input100" placeholder="Email" type="email" th:field="*{email}" name="email">
                     <span class="focus-input100"></span>
                     <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red"></span>
                 </div>
 
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" placeholder="Password" type="password" name="password">
+                    <input class="input100" placeholder="Password" type="password" th:field="*{password}" name="password">
                     <span class="focus-input100"></span>
                     <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" placeholder="Password Confirm" type="password" name="passwordConfirm">
+                    <input class="input100" placeholder="Password Confirm" type="password" th:field="*{passwordConfirm}" name="passwordConfirm">
                     <span class="focus-input100"></span>
                     <span th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}" style="color:red"></span>
                 </div>
@@ -60,13 +60,13 @@
                 </div>
 
                 <div class="text-center p-t-46 p-b-20">
-                    <a href="/" class="txt1">
+                    <a href="/index" class="txt1">
                         login
                     </a>
                 </div>
             </form>
 
-            <div class="login100-more" style="background-image: url('static/images/bg-01.jpg');">
+            <div class="login100-more" style="background-image: url('/static/images/bg-01.jpg');">
             </div>
         </div>
     </div>

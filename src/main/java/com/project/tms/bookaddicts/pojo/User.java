@@ -9,9 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-
-@Entity
 @Data
+@Entity
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

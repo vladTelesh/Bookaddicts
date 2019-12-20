@@ -10,11 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class WebController {
 
-    @PostMapping("/authorization")
-    public String authorization() {
-        return "redirect:/home";
-    }
-
     @PostMapping("/add-new-book")
     public String addBook(@RequestParam String name) {
         return "info-book";

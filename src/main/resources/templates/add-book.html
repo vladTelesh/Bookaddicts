@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>add book</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/home.css}">
 </head>
 <body>
 <div th:replace="menu.html :: menu"></div>
 <div class="form-wrap">
-    <div class="profile"><img th:src="@{/images/book.png}" width="160" height="200">
+    <div class="profile"><img th:src="@{/static/images/book.png}" width="160" height="200">
         <h1>Книга</h1>
     </div>
     <form method="post" action="form.php">

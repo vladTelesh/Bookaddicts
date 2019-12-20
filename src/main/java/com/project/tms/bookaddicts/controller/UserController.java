@@ -39,7 +39,6 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-
         userService.save(userForm);
 
         securityService.autoLogin(userForm.getEmail(), userForm.getPasswordConfirm());
