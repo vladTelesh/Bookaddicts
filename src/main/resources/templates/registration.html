@@ -5,24 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" type="image/png" th:href="@{/images/icons/registration.png}"/>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/main.css}">
 </head>
 <body>
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form" method="post" action="/add-new-user">
+            <form class="login100-form validate-form" th:object="${userForm}" method="post" action="/registration">
 					<span class="login100-form-title p-b-43">
 						Registration
 					</span>
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" placeholder="Name" pattern=^[A-Z]{1}[a-z]+$ name="name">
+                    <input class="input100" type="text" th:field="*{name}" placeholder="Name" pattern=^[A-Z]{1}[a-z]+$ name="name">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" placeholder="Surname" pattern=^[A-Z]{1}[a-z]+$ name="name">
+                    <input class="input100" type="text" placeholder="Surname" th:field="*{surname}" pattern=^[A-Z]{1}[a-z]+$ name="surname">
                     <span class="focus-input100"></span>
 
                 </div>
@@ -37,13 +37,20 @@
                 <div class="wrap-input100 validate-input">
                     <input class="input100" placeholder="Email" type="email" name="email">
                     <span class="focus-input100"></span>
-
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red"></span>
                 </div>
 
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" placeholder="Password" type="password" name="pass">
+                    <input class="input100" placeholder="Password" type="password" name="password">
                     <span class="focus-input100"></span>
+                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" placeholder="Password Confirm" type="password" name="passwordConfirm">
+                    <span class="focus-input100"></span>
+                    <span th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}" style="color:red"></span>
                 </div>
 
                 <div class="container-login100-form-btn">
@@ -59,7 +66,7 @@
                 </div>
             </form>
 
-            <div class="login100-more" style="background-image: url('/images/bg-01.jpg');">
+            <div class="login100-more" style="background-image: url('static/images/bg-01.jpg');">
             </div>
         </div>
     </div>

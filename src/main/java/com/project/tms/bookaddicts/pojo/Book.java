@@ -1,4 +1,4 @@
-package pojo;
+package com.project.tms.bookaddicts.pojo;
 
 import javax.persistence.*;
 import java.io.Serializable;

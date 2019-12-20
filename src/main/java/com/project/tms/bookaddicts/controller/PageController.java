@@ -1,4 +1,4 @@
-package controller;
+package com.project.tms.bookaddicts.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,21 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class PageController {
-
-    @GetMapping(value = "/")
-    public String index() {
-        return "index";
-    }
-
-    @GetMapping("/registration")
-    public String reg(){
-        return "registration";
-    }
-
-    @GetMapping("/home")
-    public String home(){
-        return "home";
-    }
 
     @GetMapping("/search")
     public String search(){
@@ -35,6 +20,11 @@ public class PageController {
     @GetMapping("/add-author")
     public String addAuthor(){
         return "add-author";
+    }
+
+    @GetMapping("/home")
+    public String home(){
+        return "home";
     }
 
 }
