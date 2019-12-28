@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Info author</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/home.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/forInfo.css}">
+</head>
+<body>
+<div th:replace="menu.html :: menu"></div>
+<div class="form-style-10">
+    <div class="section"><span>1</span>Information</div>
+    <div class="inner-wrap">
+        <label>Name:
+            <output>${param.name}</output>
+        </label>
+        <label>Surname:
+            <output>${param.surname}</output>
+        </label>
+        <label>Birthday:
+            <output>${param.email}</output>
+        </label>
+        <label>Email:
+            <output>${param.gender}</output>
+        </label>
+    </div>
+</div>
+</body>
+</html>

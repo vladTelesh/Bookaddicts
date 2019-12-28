@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>setting</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/home.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/forInfo.css}">
+</head>
+<body>
+
+<div th:replace="menu.html :: menu"></div>
+<div class="form-style-10">
+    <h1>Setting!<span>You can change information about yourself!</span></h1>
+    <span th:if="${message != null}" th:text="${message}" style="color:green; margin-top: 5%;margin-bottom: 5%"></span>
+    <form action="/user-setting" th:object="${user}" method="post">
+
+        <div class="section"><span>1</span>First Name</div>
+        <div class="inner-wrap">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red; margin-top: 10%"></span>
+            <label>Your Full Name
+            <input type="text" required pattern=^[A-Z]{1}[a-z]+$
+                                         placeholder="Only english letters" th:field="*{name}" th:value="${#authentication.principal.name}" /></label>
+            <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color:red; margin-top: 10%"></span>
+            <label>Your Full Surname
+                <input type="text" required pattern=^[A-Z]{1}[a-z]+$
+                                            placeholder="Only english letters"  th:field="*{surname}" th:value="${#authentication.principal.surname}" /></label>
+        </div>
+        <div class="section"><span>2</span>Email & Birthday</div>
+        <div class="inner-wrap">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red; margin-top: 10%"></span>
+            <label>Email Address
+                <input type="email"  required  placeholder="XXX@XXX.XX" th:field="*{email}" th:value="${#authentication.principal.email}"/>
+            </label>
+            <span th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" style="color:red; margin-top: 10%"></span>
+            <label>Birthday
+                <input type="date"  required th:field="*{birthday}"  th:value="${#authentication.principal.birthday}"/></label>
+            <input type="hidden" th:field="*{id}"  th:value="${#authentication.principal.id}"/></label>
+
+        </div>
+
+        <div class="button-section">
+            <input type="submit" value="Изменить"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

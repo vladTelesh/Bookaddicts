@@ -2,6 +2,7 @@ package com.project.tms.bookaddicts.controller;
 
 import com.project.tms.bookaddicts.pojo.User;
 import com.project.tms.bookaddicts.service.SecurityService;
+import com.project.tms.bookaddicts.validator.PasswordValidator;
 import com.project.tms.bookaddicts.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,12 +19,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private SecurityService securityService;
-
     @Autowired
     private UserValidator userValidator;
+    @Autowired
+    private PasswordValidator passwordValidator;
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -35,12 +36,13 @@ public class UserController {
     @PostMapping("/registration")
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
+        passwordValidator.validate(userForm,bindingResult);
 
         if (bindingResult.hasErrors()) {
+
             return "registration";
         }
         userService.save(userForm);
-
         securityService.autoLogin(userForm.getEmail(), userForm.getPasswordConfirm());
 
         return "redirect:/home";
@@ -56,4 +58,22 @@ public class UserController {
         return "index";
     }
 
+
+    @GetMapping("/user-setting")
+    public String userSetting(@AuthenticationPrincipal User user, Model model) {
+        model.addAttribute("user", user);
+        return "user-settings";
+    }
+
+    @PostMapping("/user-setting")
+    public String userEdit(@ModelAttribute("user") User user, Model model, BindingResult bindingResult) {
+        userValidator.validate(user, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "user-settings";
+        }
+        userService.update(user);
+        model.addAttribute("message", "SUCCESS");
+        return "user-settings";
+    }
 }

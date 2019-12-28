@@ -10,7 +10,7 @@
         <button class="dropbtn" th:text="${#request.userPrincipal.name}">Name's account</button>
         <div class="dropdown-content">
             <a th:href="@{/home}">Profile</a>
-            <a href="#">Settings</a>
+            <a href="/user-setting">Settings</a>
             <a href="/logout">Sign out</a>
         </div>
     </div>

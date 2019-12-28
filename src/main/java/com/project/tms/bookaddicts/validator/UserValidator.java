@@ -8,6 +8,8 @@ import org.springframework.validation.Validator;
 import com.project.tms.bookaddicts.pojo.User;
 import com.project.tms.bookaddicts.service.UserService;
 
+import java.util.regex.Pattern;
+
 @Service
 public class UserValidator implements Validator {
     @Autowired
@@ -22,21 +24,33 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birthday", "NotEmpty");
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "NotEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "surname", "NotEmpty");
+        if (!Pattern.compile(Patterns.NAME_PATTERN.getPattern()).matcher(user.getName()).matches()) {
+            errors.rejectValue("name", "Wrong.name");
+        }
+        if (!Pattern.compile(Patterns.NAME_PATTERN.getPattern()).matcher(user.getSurname()).matches()) {
+            errors.rejectValue("surname", "Wrong.surname");
+        }
+
         if (user.getEmail().length() < 4 || user.getEmail().length() > 32) {
             errors.rejectValue("email", "Size.userForm.email");
         }
-        if (userService.findByEmail(user.getEmail()) != null) {
-            errors.rejectValue("email", "Duplicate.userForm.username");
+        if (user.getId() == 0) {
+            if (userService.findByEmail(user.getEmail()) != null) {
+                errors.rejectValue("email", "Duplicate.userForm.username");
+            }
+        } else {
+            if(userService.findEmailWithoutCurrantId(user.getEmail(),user.getId()) != null){
+                errors.rejectValue("email", "Duplicate.userForm.username");
+            }
+
+        }
+        if (!Pattern.compile(Patterns.EMAIL_PATTERN.getPattern()).matcher(user.getEmail()).matches()) {
+            errors.rejectValue("email", "Wrong.email");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-            errors.rejectValue("password", "Size.userForm.password");
-        }
-
-        if (!user.getPasswordConfirm().equals(user.getPassword())) {
-            errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
-        }
     }
 }
