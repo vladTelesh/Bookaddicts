@@ -1,22 +1,22 @@
 package com.project.tms.bookaddicts.service.impl;
 
+import com.project.tms.bookaddicts.pojo.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import com.project.tms.bookaddicts.service.SecurityService;
 
+import java.util.Collection;
+
 @Service
 public class SecurityServiceImpl implements SecurityService {
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
     @Autowired
     @Qualifier("UserDetailsService")
@@ -25,25 +25,20 @@ public class SecurityServiceImpl implements SecurityService {
     private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
 
     @Override
-    public String findLoggedInEmail() {
-        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
-        if (userDetails instanceof UserDetails) {
-            return ((UserDetails) userDetails).getUsername();
+    public void reloadPrincipal(Object principal, Object credentials, Collection<? extends GrantedAuthority> authorities) {
+        Authentication authentication = new UsernamePasswordAuthenticationToken(principal, credentials, authorities);
+
+        if (authentication.isAuthenticated()) {
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            logger.debug(String.format("Auto login successfully!"));
         }
-        return null;
     }
 
     @Override
     public void autoLogin(String email, String password) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
+        User user = (User) userDetailsService.loadUserByUsername(email);
 
-        authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-
-        if (usernamePasswordAuthenticationToken.isAuthenticated()) {
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-            logger.debug(String.format("Auto login %s successfully!", email));
-        }
+        reloadPrincipal(user, user.getPassword(),user.getAuthorities());
     }
 }
 

@@ -1,10 +1,7 @@
 package com.project.tms.bookaddicts.service.impl;
 
+import com.project.tms.bookaddicts.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.project.tms.bookaddicts.pojo.User;
@@ -17,7 +14,8 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
-
+    @Autowired
+    private SecurityService securityService;
     @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -27,6 +25,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByEmail(String email) {
         User user = userRepository.findByEmail(email);
+
         return user;
 
     }
@@ -34,7 +33,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(User user) {
         User updateUser = userRepository.findById(user.getId());
-        
+
         updateUser.setEmail(user.getEmail());
         updateUser.setName(user.getName());
         updateUser.setSurname(user.getSurname());
@@ -42,13 +41,14 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(updateUser);
 
-        Authentication authentication = new UsernamePasswordAuthenticationToken(updateUser, updateUser.getPassword(), updateUser.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        securityService.reloadPrincipal(updateUser, updateUser.getPassword(), updateUser.getAuthorities());
+
     }
 
     @Override
     public String findEmailWithoutCurrantId(String currentEmail, long id) {
         String email = userRepository.findEmailWithoutCurrantId(currentEmail,id);
+
         return email;
     }
 }
