@@ -1,34 +1,49 @@
-
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <meta charset="UTF-8">
-    <title>add author</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Add author</title>
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/home.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/forInfo.css}">
 </head>
 <body>
+
 <div th:replace="menu.html :: menu"></div>
-
-<div class="form-wrap">
-    <div class="profile"><img th:src="@{/static/images/Author.png}" width="160" height="230">
-        <h1>Автор</h1>
+<div class="form-style-10">
+    <div class="img">
+        <img th:src="@{/static/images/Author.png}" width="120" height="120">
+        <h2>Author</h2>
     </div>
-    <form method="post" action="form.php">
-        <div>
-            <label>Имя</label>
-            <input type="text" name="name" required pattern=^[A-Z]{1}[a-z]+$>
+    <form action="/add-author" th:object="${author}" method="post">
+
+        <div class="section"><span>1</span>Name & Surname & Patronymic</div>
+        <div class="inner-wrap">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red; margin-top: 10%"></span>
+            <label>Author name
+                <input type="text" required pattern=^[A-Z]{1}[a-z]+$
+                       placeholder="Only english letters" th:field="*{name}"  /></label>
+            <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color:red; margin-top: 10%"></span>
+            <label>Author surname
+                <input type="text" required pattern=^[A-Z]{1}[a-z]+$
+                       placeholder="Only english letters"  th:field="*{surname}"  /></label>
+            <span th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}" style="color:red; margin-top: 10%"></span>
+            <label>Author patronymic
+                <input type="text" required pattern=^[A-Z]{1}[a-z]+$
+                       placeholder="Only english letters" th:field="*{patronymic}"    /></label>
+        </div>
+        <div class="section"><span>2</span>Birthday</div>
+        <div class="inner-wrap">
+            <span th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" style="color:red; margin-top: 10%"></span>
+            <label>Birthday
+                <input  type="date"  required th:field="*{birthday}"     /></label>
         </div>
 
-        <div>
-            <label>Surname</label>
-            <input type="text" name="surname"  pattern=^[A-Z]{1}[a-z]+$ required>
+        <div class="button-section">
+            <input type="submit" value="Add"/>
         </div>
-        <div>
-            <label>Birthday</label>
-            <input  type="date"  name="birthday" required>
-        </div>
-        <button type="submit">Отправить</button>
     </form>
 </div>
 </body>
 </html>
+

@@ -17,11 +17,6 @@ public class PageController {
         return "add-book";
     }
 
-    @GetMapping("/add-author")
-    public String addAuthor(){
-        return "add-author";
-    }
-
     @GetMapping("/home")
     public String home(){
         return "home";

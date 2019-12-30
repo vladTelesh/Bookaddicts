@@ -1,6 +1,7 @@
 package com.project.tms.bookaddicts.pojo;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +17,9 @@ public class Author implements Serializable {
     private long id;
     private String name;
     private String surname;
+    private String patronymic;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,
             orphanRemoval = true,fetch = FetchType.EAGER)

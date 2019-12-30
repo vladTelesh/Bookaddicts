@@ -3,7 +3,7 @@ package com.project.tms.bookaddicts.controller;
 import com.project.tms.bookaddicts.pojo.User;
 import com.project.tms.bookaddicts.service.SecurityService;
 import com.project.tms.bookaddicts.validator.PasswordValidator;
-import com.project.tms.bookaddicts.validator.UserValidator;
+import com.project.tms.bookaddicts.validator.entity.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

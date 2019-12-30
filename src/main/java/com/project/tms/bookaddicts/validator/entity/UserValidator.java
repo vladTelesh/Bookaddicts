@@ -1,5 +1,6 @@
-package com.project.tms.bookaddicts.validator;
+package com.project.tms.bookaddicts.validator.entity;
 
+import com.project.tms.bookaddicts.validator.Patterns;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
@@ -25,9 +26,9 @@ public class UserValidator implements Validator {
         User user = (User) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birthday", "NotEmpty");
-
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "surname", "NotEmpty");
+
         if (!Pattern.compile(Patterns.NAME_PATTERN.getPattern()).matcher(user.getName()).matches()) {
             errors.rejectValue("name", "Wrong.name");
         }

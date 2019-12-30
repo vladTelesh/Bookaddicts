@@ -15,7 +15,7 @@
     <span th:if="${message != null}" th:text="${message}" style="color:green; margin-top: 5%;margin-bottom: 5%"></span>
     <form action="/user-setting" th:object="${user}" method="post">
 
-        <div class="section"><span>1</span>First Name</div>
+        <div class="section"><span>1</span>Name & Surname</div>
         <div class="inner-wrap">
             <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red; margin-top: 10%"></span>
             <label>Your Full Name
@@ -40,7 +40,7 @@
         </div>
 
         <div class="button-section">
-            <input type="submit" value="Изменить"/>
+            <input type="submit" value="Change"/>
         </div>
     </form>
 </div>

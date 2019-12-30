@@ -17,38 +17,38 @@
 					</span>
                 <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red; margin-top: 10%"></span>
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" th:field="*{name}" placeholder="Name"  name="name">
+                    <input class="input100" type="text" th:field="*{name}" placeholder="Name">
                     <span class="focus-input100"></span>
                 </div>
 
                 <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color:red; margin-top: 10%"></span>
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" placeholder="Surname" th:field="*{surname}"  name="surname">
+                    <input class="input100" type="text" placeholder="Surname" th:field="*{surname}">
                     <span class="focus-input100"></span>
 
                 </div>
                 <span th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" style="color:red; margin-top: 10%"></span>
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" type="date" placeholder="Birthday" th:field="*{birthday}" name="birthday">
+                    <input class="input100" type="date" placeholder="Birthday" th:field="*{birthday}">
                     <span class="focus-input100"></span>
 
                 </div>
 
                 <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red; margin-top: 10%"></span>
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" placeholder="Email" type="text" th:field="*{email}" name="email">
+                    <input class="input100" placeholder="Email" type="text" th:field="*{email}">
                     <span class="focus-input100"></span>
                 </div>
 
                 <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red; margin-top: 10%"></span>
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" placeholder="Password" type="password" th:field="*{password}" name="password">
+                    <input class="input100" placeholder="Password" type="password" th:field="*{password}">
                     <span class="focus-input100"></span>
                 </div>
 
                 <span th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}" style="color:red; margin-top: 10%"></span>
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" placeholder="Password Confirm" type="password" th:field="*{passwordConfirm}" name="passwordConfirm">
+                    <input class="input100" placeholder="Password Confirm" type="password" th:field="*{passwordConfirm}">
                     <span class="focus-input100"></span>
                 </div>
 

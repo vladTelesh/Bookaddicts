@@ -15,11 +15,6 @@ public class WebController {
         return "info-book";
     }
 
-    @PostMapping("/add-new-author")
-    public String addAuthor(@RequestParam String name) {
-        return "info-author";
-    }
-
     @GetMapping(value = "/search/{id}")
     public String search(@PathVariable long id) {
         return "/info-author";
