@@ -1,6 +1,7 @@
 package com.project.tms.bookaddicts.pojo;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,7 +20,11 @@ public class Book implements Serializable {
     private int numberOfPages;
     @Column(name = "publication_year")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date publicationYear;
+    private String image;
+    @Column(name = "link_to_source")
+    private String linkToSource;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_author")
     private Author author;

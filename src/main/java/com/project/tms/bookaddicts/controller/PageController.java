@@ -12,11 +12,6 @@ public class PageController {
         return "search";
     }
 
-    @GetMapping("/add-book")
-    public String addBook(){
-        return "add-book";
-    }
-
     @GetMapping("/home")
     public String home(){
         return "home";

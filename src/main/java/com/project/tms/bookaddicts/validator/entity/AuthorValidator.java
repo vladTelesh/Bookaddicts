@@ -27,11 +27,11 @@ public class AuthorValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "patronymic", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birthday", "NotEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "NotEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nameAuthor", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "surname", "NotEmpty");
 
-        if (!Pattern.compile(Patterns.NAME_PATTERN.getPattern()).matcher(author.getName()).matches()) {
-            errors.rejectValue("name", "Wrong.name");
+        if (!Pattern.compile(Patterns.NAME_PATTERN.getPattern()).matcher(author.getNameAuthor()).matches()) {
+            errors.rejectValue("nameAuthor", "Wrong.name");
         }
         if (!Pattern.compile(Patterns.NAME_PATTERN.getPattern()).matcher(author.getSurname()).matches()) {
             errors.rejectValue("surname", "Wrong.surname");

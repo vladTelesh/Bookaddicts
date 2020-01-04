@@ -66,7 +66,7 @@ public class UserController {
     }
 
     @PostMapping("/user-setting")
-    public String userEdit(@ModelAttribute("user") User user, Model model, BindingResult bindingResult) {
+    public String userEdit(@ModelAttribute User user, Model model, BindingResult bindingResult) {
         userValidator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()) {

@@ -1,32 +1,59 @@
-
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>add book</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Add book</title>
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/home.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/forInfo.css}">
 </head>
 <body>
+
 <div th:replace="menu.html :: menu"></div>
-<div class="form-wrap">
-    <div class="profile"><img th:src="@{/static/images/book.png}" width="160" height="200">
-        <h1>Книга</h1>
+<div class="form-style-10">
+    <div class="img">
+        <img th:src="@{/static/images/book.png}" width="120" height="120">
+        <h2>Book</h2>
     </div>
-    <form method="post" action="form.php">
-        <div>
-            <label>Name</label>
-            <input type="text" name="name" required pattern=^[A-Z]{1}[a-z]+$>
+    <form action="/add-book" method="post" th:object="${book}" enctype="multipart/form-data">
+
+        <div class="section"><span>1</span>Name & Surname & Number of pages</div>
+        <div class="inner-wrap">
+            <label>Author's Surname*
+                <select th:name="author">
+                    <option th:each="auth: ${authors}" th:utext="${auth.surname}" th:value="${auth.id}"></option>
+                </select>
+            </label>
+            <a href="/add-author">or add author</a>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red; margin-top: 10%"></span>
+            <label>Book name*
+                <input type="text" th:field="*{name}"
+                       placeholder="Only english letters" required  /></label>
+            <span th:if="${#fields.hasErrors('numberOfPages')}" th:errors="*{numberOfPages}" style="color:red; margin-top: 10%"></span>
+            <label>Number of pages*
+                <input type="number" th:field="*{numberOfPages}" required /></label>
         </div>
 
-        <div>
-            <label>number of pages</label>
-            <input type="number" name="surname"  pattern=^[A-Z]{1}[a-z]+$ required>
+        <div class="section"><span>2</span>Publication Year & Link</div>
+        <div class="inner-wrap">
+            <span th:if="${#fields.hasErrors('publicationYear')}" th:errors="*{publicationYear}" style="color:red; margin-top: 10%"></span>
+            <label>Publication Year*
+                <input type="date" th:field="*{publicationYear}" required /></label>
+            <label>Link to source
+                <input type="text" placeholder="link" th:field="*{linkToSource}" /></label>
         </div>
-        <div>
-            <label>Data publication</label>
-            <input  type="date"  name="birthday" required>
+
+        <div class="section"><span>3</span>Image</div>
+        <div class="inner-wrap">
+            <label>Image* <br>
+                <input type="file" accept="image/*" name="file" required  /></label>
+
         </div>
-        <button type="submit">Отправить</button>
+
+        <div class="button-section">
+            <input type="submit" value="Add"/>
+        </div>
+
     </form>
 </div>
 </body>

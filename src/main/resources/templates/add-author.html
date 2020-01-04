@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,24 +19,28 @@
 
         <div class="section"><span>1</span>Name & Surname & Patronymic</div>
         <div class="inner-wrap">
-            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red; margin-top: 10%"></span>
+            <span th:if="${#fields.hasErrors('nameAuthor')}" th:errors="*{nameAuthor}" style="color:red; margin-top: 10%"></span>
             <label>Author name
                 <input type="text" required pattern=^[A-Z]{1}[a-z]+$
-                       placeholder="Only english letters" th:field="*{name}"  /></label>
-            <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color:red; margin-top: 10%"></span>
-            <label>Author surname
-                <input type="text" required pattern=^[A-Z]{1}[a-z]+$
-                       placeholder="Only english letters"  th:field="*{surname}"  /></label>
-            <span th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}" style="color:red; margin-top: 10%"></span>
+                       placeholder="Only english letters" th:field="*{nameAuthor}"/></label>
+            <span th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}"
+                  style="color:red; margin-top: 10%"></span>
             <label>Author patronymic
                 <input type="text" required pattern=^[A-Z]{1}[a-z]+$
-                       placeholder="Only english letters" th:field="*{patronymic}"    /></label>
+                       placeholder="Only english letters" th:field="*{patronymic}"/></label>
+            <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"
+                  style="color:red; margin-top: 10%"></span>
+            <label>Author surname
+                <input type="text" required pattern=^[A-Z]{1}[a-z]+$
+                       placeholder="Only english letters" th:field="*{surname}"/></label>
+
         </div>
         <div class="section"><span>2</span>Birthday</div>
         <div class="inner-wrap">
-            <span th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" style="color:red; margin-top: 10%"></span>
+            <span th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"
+                  style="color:red; margin-top: 10%"></span>
             <label>Birthday
-                <input  type="date"  required th:field="*{birthday}"     /></label>
+                <input type="date" required th:field="*{birthday}"/></label>
         </div>
 
         <div class="button-section">

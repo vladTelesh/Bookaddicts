@@ -39,15 +39,8 @@ public class UserValidator implements Validator {
         if (user.getEmail().length() < 4 || user.getEmail().length() > 32) {
             errors.rejectValue("email", "Size.userForm.email");
         }
-        if (user.getId() == 0) {
-            if (userService.findByEmail(user.getEmail()) != null) {
-                errors.rejectValue("email", "Duplicate.userForm.username");
-            }
-        } else {
-            if(userService.findEmailWithoutCurrantId(user.getEmail(),user.getId()) != null){
-                errors.rejectValue("email", "Duplicate.userForm.username");
-            }
-
+        if (userService.findEmailWithoutCurrantId(user.getEmail(), user.getId()) != null) {
+            errors.rejectValue("email", "Duplicate.userForm.username");
         }
         if (!Pattern.compile(Patterns.EMAIL_PATTERN.getPattern()).matcher(user.getEmail()).matches()) {
             errors.rejectValue("email", "Wrong.email");

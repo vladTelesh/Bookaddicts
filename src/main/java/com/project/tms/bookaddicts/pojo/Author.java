@@ -15,7 +15,8 @@ public class Author implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
+    @Column(name = "name")
+    private String nameAuthor;
     private String surname;
     private String patronymic;
     @Temporal(TemporalType.DATE)

@@ -16,14 +16,12 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author findBySurname(String name) {
-        Author author = authorRepository.findBySurname(name);
-        return author;
+        return authorRepository.findBySurname(name);
     }
 
     @Override
     public List<Author> findAll() {
-        List<Author> authors = authorRepository.findAll();
-        return authors;
+        return authorRepository.findAll();
     }
 
     @Override

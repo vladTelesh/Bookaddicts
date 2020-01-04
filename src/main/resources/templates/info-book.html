@@ -3,11 +3,14 @@
 <head>
     <title>Info Book</title>
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/home.css}">
+
 </head>
 <body>
 <div th:replace="menu.html :: menu"></div>
 <h1>BOOOOK</h1>
  <span th:text="'ID: '+ ${id}"></span>
+
+<div><img th:src="@{/static/images/book/e25e1564-3584-47d3-b0f2-66145ae40541.abs.png}" width="120" height="120"></div>
 
 </body>
 </html>
