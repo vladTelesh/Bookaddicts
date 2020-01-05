@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class WebController {
 
-    @PostMapping("/add-new-book")
-    public String addBook(@RequestParam String name) {
-        return "info-book";
-    }
 
     @GetMapping(value = "/search/{id}")
     public String search(@PathVariable long id) {
@@ -25,9 +21,5 @@ public class WebController {
         return "redirect:/home";
     }
 
-    @GetMapping(value = "/book/{id}")
-    public String showBook(@PathVariable long id, Model model) {
-        model.addAttribute("id", id);
-        return "info-book";
-    }
+
 }

@@ -6,4 +6,5 @@ import org.springframework.web.multipart.MultipartFile;
 public interface BookService {
 
     boolean save(Book book, MultipartFile image);
+    Book findById(long id);
 }

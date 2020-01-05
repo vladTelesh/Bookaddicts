@@ -3,14 +3,38 @@
 <head>
     <title>Info Book</title>
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/home.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/forInfo.css}">
 
 </head>
-<body>
+<body th:object="${book}">
+
 <div th:replace="menu.html :: menu"></div>
-<h1>BOOOOK</h1>
- <span th:text="'ID: '+ ${id}"></span>
-
-<div><img th:src="@{/static/images/book/e25e1564-3584-47d3-b0f2-66145ae40541.abs.png}" width="120" height="120"></div>
-
+<div class="form-style-10">
+    <div class="section"><span>1</span>Image</div>
+    <div class="inner-wrap">
+        <div><img th:src="@{'/static/images/book/'+${book.getImage()}}" width="250" height="320"></div>
+    </div>
+    <div class="section"><span>2</span>Information</div>
+    <div class="inner-wrap">
+        <label>Name Book:
+            <output th:text="${book.name}"></output>
+        </label>
+        <label>Author Full Name:
+            <output th:text="${book.author.nameAuthor}+' '+${book.author.patronymic}+' '+${book.author.surname}"></output>
+        </label>
+        <label>Publication Year (yyyy-mm-dd):
+            <output th:text="${book.publicationYear}"></output>
+        </label>
+        <label>Number Of Pages:
+            <output th:text="${book.numberOfPages}"></output>
+        </label>
+        <span th:if="${book.linkToSource != ''} ">
+        <label>Link to source:
+            <a target="_blank" th:href="@{${book.linkToSource}}" style="margin-left: 2%">read book</a>
+        </label>
+        </span>
+    </div>
+    <div class="section"><span>3</span>Comments</div>
+</div>
 </body>
 </html>
