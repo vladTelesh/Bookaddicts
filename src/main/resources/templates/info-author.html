@@ -27,8 +27,8 @@
     </div>
     <div class="section"><span>2</span>Books</div>
     <div class="inner-wrap" >
-        <label>book:
-            <a target="_blank" th:each="book : ${author.books}" th:text="${book.name}" th:href="@{'/info-book/'+${book.id}}" style="margin-left: 2%"></a>
+        <label th:each="book : ${author.books}">book:
+            <a target="_blank"  th:text="${book.name}" th:href="@{'/info-book/'+${book.id}}" style="margin-left: 2%"></a>
         </label>
     </div>
 

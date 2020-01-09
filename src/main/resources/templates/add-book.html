@@ -28,7 +28,7 @@
             <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red; margin-top: 10%"></span>
             <label>Book name*
                 <input type="text" th:field="*{name}"
-                       placeholder="Only english letters" required  /></label>
+                        required  /></label>
             <span th:if="${#fields.hasErrors('numberOfPages')}" th:errors="*{numberOfPages}" style="color:red; margin-top: 10%"></span>
             <label>Number of pages*
                 <input type="number" th:field="*{numberOfPages}" required /></label>
