@@ -13,7 +13,6 @@ public class Comment implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String text;
-    private int rating;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_book")
     private Book book;

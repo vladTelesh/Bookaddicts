@@ -135,3 +135,25 @@
 output{
     color: black;
 }
+
+.button-section{
+    margin-top: 3%;
+}
+textarea{
+    width: 300px;
+    height: 150px;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    resize: none;
+}
+
+
+.text{
+    border: 1px solid black;
+    width: 380px;
+    padding: 10px;
+    font-size: 15px;
+    color: black;
+    word-wrap: break-word;
+}

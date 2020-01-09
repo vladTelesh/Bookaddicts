@@ -30,8 +30,9 @@
 <div th:replace="menu.html :: menu"></div>
 <h1>Enter author surname</h1>
 
-<form>
-    <input type="text" name="search" placeholder="Поиск..">
+<form action="/search" method="post">
+    <input type="text" name="surname" placeholder="Search..">
+    <div th:if="${error != null}" th:text="${error}" style="color:red; font-size: 250%"></div>
 </form>
 
 </body>

@@ -3,6 +3,7 @@ package com.project.tms.bookaddicts.controller;
 
 import com.project.tms.bookaddicts.pojo.Author;
 import com.project.tms.bookaddicts.pojo.Book;
+import com.project.tms.bookaddicts.pojo.Comment;
 import com.project.tms.bookaddicts.service.AuthorService;
 import com.project.tms.bookaddicts.service.BookService;
 import com.project.tms.bookaddicts.validator.entity.AuthorValidator;
@@ -71,6 +72,7 @@ public class AuthorAndBookController {
     public String getInfoBook(@PathVariable("id") long id, Model model){
         Book book = bookService.findById(id);
         model.addAttribute("book",book);
+        model.addAttribute("comment",new Comment());
         return "info-book";
     }
 }
