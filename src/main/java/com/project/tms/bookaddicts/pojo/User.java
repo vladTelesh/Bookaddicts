@@ -1,6 +1,8 @@
 package com.project.tms.bookaddicts.pojo;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +27,10 @@ public class User implements UserDetails {
     private String passwordConfirm;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true,
             fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Comment> comments;
+    @OneToMany(mappedBy = "user_book",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<DetailsInfo> books;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

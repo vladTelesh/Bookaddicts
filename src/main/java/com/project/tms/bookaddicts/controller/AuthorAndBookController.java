@@ -1,14 +1,14 @@
 package com.project.tms.bookaddicts.controller;
 
 
-import com.project.tms.bookaddicts.pojo.Author;
-import com.project.tms.bookaddicts.pojo.Book;
-import com.project.tms.bookaddicts.pojo.Comment;
+import com.project.tms.bookaddicts.pojo.*;
 import com.project.tms.bookaddicts.service.AuthorService;
 import com.project.tms.bookaddicts.service.BookService;
+import com.project.tms.bookaddicts.service.DetailsInfoService;
 import com.project.tms.bookaddicts.validator.entity.AuthorValidator;
 import com.project.tms.bookaddicts.validator.entity.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,7 +29,8 @@ public class AuthorAndBookController {
     private AuthorValidator authorValidator;
     @Autowired
     private BookValidator bookValidator;
-
+    @Autowired
+    private DetailsInfoService detailsInfoService;
 
 
     @GetMapping("/add-author")
@@ -69,10 +70,19 @@ public class AuthorAndBookController {
     }
 
     @GetMapping("/info-book/{id}")
-    public String getInfoBook(@PathVariable("id") long id, Model model){
+    public String getInfoBook(@AuthenticationPrincipal User user, @PathVariable("id") long id, Model model){
         Book book = bookService.findById(id);
+        if(detailsInfoService.findByBookIdAndUserId(user.getId(),id)){
+            model.addAttribute("check","has");
+        }
         model.addAttribute("book",book);
         model.addAttribute("comment",new Comment());
         return "info-book";
+    }
+
+    @PostMapping("/add-lib-book")
+    public String addBookInLibrary(@ModelAttribute DetailsInfo detailsInfo){
+        detailsInfoService.save(detailsInfo);
+        return "redirect:/home";
     }
 }

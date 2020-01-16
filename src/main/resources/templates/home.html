@@ -18,22 +18,15 @@
         <th></th>
         <th></th>
     </tr>
-    <tr>
-        <td>History company NIKE</td>
-        <td>Fill Nite</td>
-        <td>10.0</td>
-        <td>10</td>
-        <td><a href="/info-book/1">Open</a></td>
-        <td><a href="/delete/1">Delete</a></td>
+    <tr th:each="books : ${book}">
+        <td th:utext="${books.book_user.name}"></td>
+        <td th:utext="${books.book_user.author.surname}"></td>
+        <td th:utext="${books.rating}"></td>
+        <td th:utext="${books.rating}"></td>
+        <td><a th:href="@{'/info-book/' + ${books.book_user.id}}">Open</a></td>
+        <td><a th:href="@{'/delete/' + ${books.book_user.id}}">Delete</a></td>
 
-    <tr>
-    <td>History</td>
-    <td>Fill</td>
-    <td>4.0</td>
-    <td>5.0</td>
-    <td><a href="/info-book/2">Open</a></td>
-    <td><a href="/delete/2">Delete</a></td>
-</tr>
+    </tr>
 </table>
 </body>
 </html>

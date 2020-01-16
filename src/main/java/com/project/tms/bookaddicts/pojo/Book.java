@@ -1,6 +1,8 @@
 package com.project.tms.bookaddicts.pojo;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -30,5 +32,8 @@ public class Book implements Serializable {
     private Author author;
     @OneToMany(mappedBy = "book",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Comment> comments;
+    @OneToMany(mappedBy = "book_user",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<DetailsInfo> users;
 
 }

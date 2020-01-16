@@ -60,12 +60,12 @@ CREATE TABLE `bookaddicts`.`user_book` (
   PRIMARY KEY (`id`),
   INDEX `id_user_mtm_pk_idx` (`id_user` ASC) VISIBLE,
   INDEX `id_book_mtm_pk_idx` (`id_book` ASC) VISIBLE,
-  CONSTRAINT `id_user_mtm_pk`
+  CONSTRAINT `id_user_mto_fk`
     FOREIGN KEY (`id_user`)
     REFERENCES `bookaddicts`.`user` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `id_book_mtm_pk`
+  CONSTRAINT `id_book_mto_fk`
     FOREIGN KEY (`id_book`)
     REFERENCES `bookaddicts`.`book` (`id`)
     ON DELETE CASCADE
