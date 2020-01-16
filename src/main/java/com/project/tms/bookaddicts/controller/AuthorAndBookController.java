@@ -32,7 +32,6 @@ public class AuthorAndBookController {
     @Autowired
     private DetailsInfoService detailsInfoService;
 
-
     @GetMapping("/add-author")
     public String pageAuthor(Model model) {
         model.addAttribute("author", new Author());

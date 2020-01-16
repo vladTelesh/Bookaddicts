@@ -3,6 +3,7 @@ package com.project.tms.bookaddicts.controller;
 import com.project.tms.bookaddicts.pojo.Author;
 import com.project.tms.bookaddicts.pojo.User;
 import com.project.tms.bookaddicts.service.AuthorService;
+import com.project.tms.bookaddicts.service.SecurityService;
 import com.project.tms.bookaddicts.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,6 +21,9 @@ public class PageController {
     private AuthorService authorService;
     @Autowired
     UserService userService;
+    @Autowired
+    private SecurityService securityService;
+
     @GetMapping("/search")
     public String search(){
         return "search";
@@ -38,8 +42,8 @@ public class PageController {
 
     @GetMapping("/home")
     public String home(@AuthenticationPrincipal User user, Model model){
-        User user1 = userService.findByEmail(user.getEmail());
-        model.addAttribute("book",user1.getBooks());
+        securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
+        model.addAttribute("book",user.getBooks());
         return "home";
     }
 }

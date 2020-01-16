@@ -1,6 +1,9 @@
 package com.project.tms.bookaddicts.pojo;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -9,8 +12,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-@Data
+
 @Entity
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Author implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

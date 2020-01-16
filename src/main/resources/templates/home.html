@@ -23,8 +23,8 @@
         <td th:utext="${books.book_user.author.surname}"></td>
         <td th:utext="${books.rating}"></td>
         <td th:utext="${books.rating}"></td>
-        <td><a th:href="@{'/info-book/' + ${books.book_user.id}}">Open</a></td>
-        <td><a th:href="@{'/delete/' + ${books.book_user.id}}">Delete</a></td>
+        <td><a class="c" th:href="@{'/info-book/' + ${books.book_user.id}}">Open</a></td>
+        <td><a class="c" th:href="@{'/delete/' + ${books.book_user.id}}">Delete</a></td>
 
     </tr>
 </table>

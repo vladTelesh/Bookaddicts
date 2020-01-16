@@ -10,9 +10,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.*;
 
+
 @Data
 @Entity
 public class User implements UserDetails {
+
+    private static final long serialVersionUID = -4893961412599713984L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
